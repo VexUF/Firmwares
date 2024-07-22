@@ -39,6 +39,8 @@
         * EVENT_OUT
         * EXTI
      PA8   ------> RCC_MCO_1
+     PA11   ------> USB_OTG_FS_DM
+     PA12   ------> USB_OTG_FS_DP
 */
 void MX_GPIO_Init(void)
 {
@@ -62,7 +64,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|ActDa_Pin|ActLa_Pin|ActCk_Pin
-                          |GPIO_PIN_4|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
+                          |ActLd_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PCPin PCPin PCPin PCPin
                            PCPin */
@@ -89,19 +91,13 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(Boot1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB10 PBPin PBPin PBPin
-                           PB4 PB8 PB9 */
+                           PBPin */
   GPIO_InitStruct.Pin = GPIO_PIN_10|ActDa_Pin|ActLa_Pin|ActCk_Pin
-                          |GPIO_PIN_4|GPIO_PIN_8|GPIO_PIN_9;
+                          |ActLd_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = ActLD_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(ActLD_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = MCO_Pin;
@@ -110,6 +106,14 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
   HAL_GPIO_Init(MCO_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PAPin PAPin */
+  GPIO_InitStruct.Pin = UsbM_Pin|UsbP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF10_OTG_FS;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = SdioDet_Pin;

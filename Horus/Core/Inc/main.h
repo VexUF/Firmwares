@@ -107,8 +107,8 @@ void Error_Handler(void);
 #define ActLa_GPIO_Port GPIOB
 #define ActCk_Pin GPIO_PIN_14
 #define ActCk_GPIO_Port GPIOB
-#define ActLD_Pin GPIO_PIN_15
-#define ActLD_GPIO_Port GPIOB
+#define ActLd_Pin GPIO_PIN_15
+#define ActLd_GPIO_Port GPIOB
 #define D0_Pin GPIO_PIN_8
 #define D0_GPIO_Port GPIOC
 #define D1_Pin GPIO_PIN_9

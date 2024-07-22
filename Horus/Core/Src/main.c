@@ -25,8 +25,8 @@
 #include "rtc.h"
 #include "sdio.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -103,9 +103,16 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART6_UART_Init();
   MX_FATFS_Init();
-  MX_USB_DEVICE_Init();
   MX_ADC1_Init();
+  MX_TIM3_Init();
+  MX_TIM10_Init();
+  MX_TIM11_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(ActLd_GPIO_Port, ActLd_Pin, GPIO_PIN_SET);
+
+
+
+
 
   /* USER CODE END 2 */
 
@@ -113,6 +120,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  for(ActuatorPin pin = ACT_PIN_A1; pin <= ACT_PIN_A8; pin++) {
+		  Actuators_SetPin(pin);
+		  HAL_Delay(100);
+		  Actuators_ResetPin(pin);
+		  HAL_Delay(100);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
