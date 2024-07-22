@@ -101,8 +101,6 @@ void Error_Handler(void);
 #define Av3_GPIO_Port GPIOB
 #define Boot1_Pin GPIO_PIN_2
 #define Boot1_GPIO_Port GPIOB
-#define Buzzer_Pin GPIO_PIN_10
-#define Buzzer_GPIO_Port GPIOB
 #define ActDa_Pin GPIO_PIN_12
 #define ActDa_GPIO_Port GPIOB
 #define ActLa_Pin GPIO_PIN_13
@@ -137,18 +135,12 @@ void Error_Handler(void);
 #define SdioCmd_GPIO_Port GPIOD
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
-#define LcdLD_Pin GPIO_PIN_4
-#define LcdLD_GPIO_Port GPIOB
 #define Evt_Pin GPIO_PIN_5
 #define Evt_GPIO_Port GPIOB
 #define I2cCk_Pin GPIO_PIN_6
 #define I2cCk_GPIO_Port GPIOB
 #define I2cDa_Pin GPIO_PIN_7
 #define I2cDa_GPIO_Port GPIOB
-#define Servo2_Pin GPIO_PIN_8
-#define Servo2_GPIO_Port GPIOB
-#define Servo1_Pin GPIO_PIN_9
-#define Servo1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

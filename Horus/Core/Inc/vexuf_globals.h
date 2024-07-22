@@ -35,4 +35,9 @@
 
 
 
+// Global variable to hold the state of the shift register
+extern uint8_t actuatorsData;
+
+
+
 #endif /* INC_VEXUF_GLOBALS_H_ */

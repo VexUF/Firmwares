@@ -1,0 +1,4 @@
+../Core/Src/actuators.c:12:6:Actuators_Write	2
+../Core/Src/actuators.c:27:6:Actuators_SetPin	2
+../Core/Src/actuators.c:34:6:Actuators_ResetPin	2
+../Core/Src/actuators.c:41:6:Actuators_Update	1
