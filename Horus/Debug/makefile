@@ -65,7 +65,7 @@ main-build: Firmware-Horus.elf secondary-outputs
 
 # Tool invocations
 Firmware-Horus.elf Firmware-Horus.map: $(OBJS) $(USER_OBJS) /Users/alybadawy/repos/Vexuf-Project/Firmwares/Horus/STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Firmware-Horus.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/alybadawy/repos/Vexuf-Project/Firmwares/Horus/STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firmware-Horus.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Firmware-Horus.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/alybadawy/repos/Vexuf-Project/Firmwares/Horus/STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firmware-Horus.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

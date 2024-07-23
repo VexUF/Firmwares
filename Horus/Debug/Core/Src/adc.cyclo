@@ -1,3 +1,4 @@
-../Core/Src/adc.c:31:6:MX_ADC1_Init	3
-../Core/Src/adc.c:78:6:HAL_ADC_MspInit	3
-../Core/Src/adc.c:135:6:HAL_ADC_MspDeInit	2
+../Core/Src/adc.c:35:6:MX_ADC1_Init	6
+../Core/Src/adc.c:110:6:HAL_ADC_MspInit	3
+../Core/Src/adc.c:167:6:HAL_ADC_MspDeInit	2
+../Core/Src/adc.c:200:7:get_cpu_temp	1

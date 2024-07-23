@@ -33,6 +33,7 @@
 /* USER CODE BEGIN Includes */
 #include "vexuf_globals.h"
 #include "actuators.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,7 +54,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,7 +64,12 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int _write(int file, char *ptr, int len) {
+	for (int i=0; i < len; i++) {
+		ITM_SendChar(*ptr++);
+	}
+	return len;
+}
 /* USER CODE END 0 */
 
 /**
@@ -110,22 +115,39 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(ActLd_GPIO_Port, ActLd_Pin, GPIO_PIN_SET);
 
+  HAL_ADC_Start_DMA(&hadc1, avs, 4);
 
+//  HAL_ADC_GetValue(&hadc1);/
+  uint8_t counter = 0;
 
-
-
+  printf("hello %d\r\n", counter);
+ 		  HAL_Delay(1000);
+ 		  counter++;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  for(ActuatorPin pin = ACT_PIN_A1; pin <= ACT_PIN_A8; pin++) {
-		  Actuators_SetPin(pin);
-		  HAL_Delay(100);
-		  Actuators_ResetPin(pin);
-		  HAL_Delay(100);
-	  }
+//	  for(ActuatorPin pin = ACT_PIN_A1; pin <= ACT_PIN_A8; pin++) {
+//		  Actuators_SetPin(pin);
+//		  HAL_Delay(100);
+//		  Actuators_ResetPin(pin);
+//		  HAL_Delay(100);
+//
+//
+//
+//
+//
+//	  }
+
+	printf("value of av1: %i\r\n", avs[0]);
+	printf("value of av2: %i\r\n", avs[1]);
+	printf("value of av3: %i\r\n", avs[2]);
+	printf("value of cpu_temp: %i\r\n", avs[3]);
+	printf("temp of cpu: %f\r\n", get_cpu_temp(avs[3]));
+
+	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -150,12 +172,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
-                              |RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
@@ -180,11 +199,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_1);
-
-  /** Enables the Clock Security System
-  */
-  HAL_RCC_EnableCSS();
+  HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSE, RCC_MCODIV_1);
 }
 
 /* USER CODE BEGIN 4 */

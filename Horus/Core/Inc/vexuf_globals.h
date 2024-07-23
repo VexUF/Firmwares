@@ -34,10 +34,18 @@
 #define EEPROM_BUZZER_ENABLED_ADDR    0x002C
 
 
+#define ADC_RESOLUTION    	4096		// 12-bit ADC resolution
+#define VREF              	3.3		// Reference voltage
 
-// Global variable to hold the state of the shift register
-extern uint8_t actuatorsData;
+#define V25					0.76
+#define CPU_TEMP_AVG_SLOPE  0.0025
+#define CPU_TEMP_VSENSE		VREF/ADC_RESOLUTION
 
+
+
+extern uint8_t actuatorsData; 		// Global variable to hold the state of the Actuators shift register
+extern uint16_t avs[4];				// buffer to store the AVs values from ADC
+extern float cpu_temp;				// to hold the internal CPU temperature value
 
 
 #endif /* INC_VEXUF_GLOBALS_H_ */
